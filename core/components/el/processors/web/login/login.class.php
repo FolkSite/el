@@ -41,13 +41,13 @@ class modelLoginProcessor extends modObjectProcessor
 			if ($locked !== true) {
 				return $this->el->failure($this->el->lexicon('err_limit_action'));
 			}
-
+ 
 			$create = $this->el->createUser(array('email' => $email, 'groups' => $properties['groups']));
 			if (!$create) {
 				return $this->el->failure($this->el->lexicon('err_create_user'));
 			}
 
-			$userId = $this->el->getUserId($email);
+			$userId = $this->el->getUserId($email); 
 		}
 
 		$hash = $this->el->getHash(array('id' => $userId));

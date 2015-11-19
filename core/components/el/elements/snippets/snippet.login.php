@@ -7,7 +7,7 @@ $scriptProperties['objectName'] = $modx->getOption('objectName', $scriptProperti
 
 $scriptProperties['tplLogin'] = $modx->getOption('tplLogin', $scriptProperties, 'tpl.el.login', true);
 $scriptProperties['tplLogout'] = $modx->getOption('tplLogout', $scriptProperties, 'tpl.el.logout', true);
-$scriptProperties['tplLink'] = $modx->getOption('tplActivate', $scriptProperties, 'tpl.el.activate', true);
+$scriptProperties['tplLink'] = $modx->getOption('tplLink', $scriptProperties, 'tpl.el.link', true);
 $scriptProperties['ttlLink'] = $modx->getOption('ttlLink', $scriptProperties, 600, true);
 $scriptProperties['ttlLock'] = $modx->getOption('ttlLock', $scriptProperties, 600, true);
 $scriptProperties['groups'] = $modx->getOption('groups', $scriptProperties, '', true);
