@@ -6,7 +6,7 @@ if (!function_exists('installPackage')) {
 		global $modx;
 
 		/* @var modTransportProvider $provider */
-		if (!$provider = $modx->getObject('transport.modTransportProvider', array('service_url:LIKE' => '%rstore.pro%', 'OR:service_url:LIKE' => '%modstore.pro%'))) {
+		if (!$provider = $modx->getObject('transport.modTransportProvider', array('service_url:LIKE' => '%rstore.pro%'))) {
 			$provider = $modx->getObject('transport.modTransportProvider', 1);
 		}
 

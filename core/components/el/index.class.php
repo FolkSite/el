@@ -57,4 +57,4 @@ class IndexManagerController extends elMainController {
 	public static function getDefaultController() {
 		return 'home';
 	}
-} 
+}

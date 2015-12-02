@@ -1,5 +1,9 @@
 Changelog for EL.
 
+1.0.1-beta
+==============
+- Fix setup
+
 1.0.0-beta
 ==============
 - Initial
