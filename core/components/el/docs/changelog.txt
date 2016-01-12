@@ -1,5 +1,9 @@
 Changelog for EL.
 
+1.0.2-beta
+==============
+- Add ModPNotify
+
 1.0.1-beta
 ==============
 - Fix setup

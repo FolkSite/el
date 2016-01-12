@@ -24,5 +24,6 @@ $scriptProperties['location'] = $modx->getOption('location', $scriptProperties, 
 if ($snippet = $modx->getObject('modSnippet', array('name' => 'ecc'))) {
 	$snippet->_cacheable = false;
 	$snippet->_processed = false;
+
 	return $snippet->process($scriptProperties);
 }

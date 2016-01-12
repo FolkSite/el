@@ -17,7 +17,7 @@ class el
 	public $initialized = array();
 
 	/**
-	 * @param modX $modx
+	 * @param modX  $modx
 	 * @param array $config
 	 */
 	function __construct(modX &$modx, array $config = array())
@@ -27,26 +27,27 @@ class el
 		$corePath = $this->modx->getOption('el_core_path', $config, $this->modx->getOption('core_path') . 'components/el/');
 		$assetsUrl = $this->modx->getOption('el_assets_url', $config, $this->modx->getOption('assets_url') . 'components/el/');
 		$connectorUrl = $assetsUrl . 'connector.php';
-		$assetsPath = MODX_ASSETS_PATH;
 
 		$this->config = array_merge(array(
-			'assetsUrl' => $assetsUrl,
-			'cssUrl' => $assetsUrl . 'css/',
-			'jsUrl' => $assetsUrl . 'js/',
-			'imagesUrl' => $assetsUrl . 'images/',
-			'connectorUrl' => $connectorUrl,
-			'actionUrl' => $assetsUrl . 'action.php',
+			'assetsBasePath'  => MODX_ASSETS_PATH,
+			'assetsBaseUrl'   => MODX_ASSETS_URL,
+			'assetsUrl'       => $assetsUrl,
+			'cssUrl'          => $assetsUrl . 'css/',
+			'jsUrl'           => $assetsUrl . 'js/',
+			'imagesUrl'       => $assetsUrl . 'images/',
+			'connectorUrl'    => $connectorUrl,
+			'actionUrl'       => $assetsUrl . 'action.php',
 
-			'corePath' => $corePath,
-			'modelPath' => $corePath . 'model/',
-			'chunksPath' => $corePath . 'elements/chunks/',
-			'templatesPath' => $corePath . 'elements/templates/',
-			'chunkSuffix' => '.chunk.tpl',
-			'snippetsPath' => $corePath . 'elements/snippets/',
-			'processorsPath' => $corePath . 'processors/',
+			'corePath'        => $corePath,
+			'modelPath'       => $corePath . 'model/',
+			'chunksPath'      => $corePath . 'elements/chunks/',
+			'templatesPath'   => $corePath . 'elements/templates/',
+			'chunkSuffix'     => '.chunk.tpl',
+			'snippetsPath'    => $corePath . 'elements/snippets/',
+			'processorsPath'  => $corePath . 'processors/',
 
 			'prepareResponse' => true,
-			'jsonResponse' => true,
+			'jsonResponse'    => true,
 
 		), $config);
 
@@ -56,7 +57,7 @@ class el
 	}
 
 	/**
-	 * @param $n
+	 * @param       $n
 	 * @param array $p
 	 */
 	public function __call($n, array$p)
@@ -65,9 +66,9 @@ class el
 	}
 
 	/**
-	 * @param $key
+	 * @param       $key
 	 * @param array $config
-	 * @param null $default
+	 * @param null  $default
 	 *
 	 * @return mixed|null
 	 */
@@ -83,6 +84,7 @@ class el
 				$option = $this->modx->getOption("{$this->namespace}_{$key}");
 			}
 		}
+
 		return $option;
 	}
 
@@ -90,7 +92,7 @@ class el
 	 * Initializes component into different contexts.
 	 *
 	 * @param string $ctx The context to load. Defaults to web.
-	 * @param array $scriptProperties
+	 * @param array  $scriptProperties
 	 *
 	 * @return boolean
 	 */
@@ -109,23 +111,24 @@ class el
 			default:
 				if (!defined('MODX_API_MODE') OR !MODX_API_MODE) {
 					$config = $this->modx->toJSON(array(
-						'assetsUrl' => $this->config['assetsUrl'],
-						'actionUrl' => $this->config['actionUrl'],
-						'defaults' => array(
-							'yes' => $this->lexicon('yes'),
-							'no' => $this->lexicon('no'),
-							'message' => array(
+						'assetsBaseUrl' => $this->config['assetsBaseUrl'],
+						'assetsUrl'     => $this->config['assetsUrl'],
+						'actionUrl'     => $this->config['actionUrl'],
+						'defaults'      => array(
+							'yes'      => $this->lexicon('yes'),
+							'no'       => $this->lexicon('no'),
+							'message'  => array(
 								'title' => array(
 									'success' => $this->lexicon('title_ms_success'),
-									'error' => $this->lexicon('title_ms_error'),
-									'info' => $this->lexicon('title_ms_info'),
+									'error'   => $this->lexicon('title_ms_error'),
+									'info'    => $this->lexicon('title_ms_info'),
 								),
 							),
-							'confirm' => array(
+							'confirm'  => array(
 								'title' => array(
 									'success' => $this->lexicon('title_cms_success'),
-									'error' => $this->lexicon('title_cms_error'),
-									'info' => $this->lexicon('title_cms_info'),
+									'error'   => $this->lexicon('title_cms_error'),
+									'info'    => $this->lexicon('title_cms_info'),
 								)
 							),
 							'selector' => array(
@@ -148,7 +151,7 @@ class el
 	/**
 	 * return lexicon message if possibly
 	 *
-	 * @param $message
+	 * @param       $message
 	 * @param array $placeholders
 	 *
 	 * @return string
@@ -164,6 +167,7 @@ class el
 		if ($key !== '') {
 			$message = $this->modx->lexicon->process($key, $placeholders);
 		}
+
 		return $message;
 	}
 
@@ -281,9 +285,9 @@ class el
 	{
 		if (!empty($args)) {
 			$args = array_merge(array(
-				'ns' => 'el',
+				'ns'     => 'el',
 				'action' => $type,
-			),$args);
+			), $args);
 		}
 
 		switch (true) {
@@ -344,6 +348,7 @@ class el
 		if (!$mail->send()) {
 			$this->modx->log(xPDO::LOG_LEVEL_ERROR, 'An error occurred while trying to send the email: ' . $mail->mailer->ErrorInfo);
 			$mail->reset();
+
 			return false;
 		}
 		$mail->reset();
@@ -434,6 +439,7 @@ class el
 				$lock = reset($msgs);
 			}
 		}
+
 		return $lock;
 	}
 
@@ -475,6 +481,7 @@ class el
 		} elseif (!$this->config['jsonResponse'] AND !is_array($output)) {
 			$output = $this->modx->fromJSON($output);
 		}
+
 		return $output;
 	}
 
@@ -484,7 +491,7 @@ class el
 	 * @access public
 	 *
 	 * @param string $action Path to processor
-	 * @param array $data Data to be transmitted to the processor
+	 * @param array  $data Data to be transmitted to the processor
 	 *
 	 * @return mixed The result of the processor
 	 */
@@ -505,6 +512,7 @@ class el
 		}
 		$result = $this->config['prepareResponse'] ? $this->prepareResponse($response) : $response;
 		$this->setJsonResponse();
+
 		return $result;
 	}
 
@@ -525,13 +533,14 @@ class el
 				$output = $this->processTags($output);
 			}
 		}
+
 		return $output;
 	}
 
 	/**
 	 * Collects and processes any set of tags
 	 *
-	 * @param mixed $html Source code for parse
+	 * @param mixed   $html Source code for parse
 	 * @param integer $maxIterations
 	 *
 	 * @return mixed $html Parsed html
@@ -542,6 +551,7 @@ class el
 			$this->modx->getParser()->processElementTags('', $html, false, false, '[[', ']]', array(), $maxIterations);
 			$this->modx->getParser()->processElementTags('', $html, true, true, '[[', ']]', array(), $maxIterations);
 		}
+
 		return $html;
 	}
 
@@ -595,8 +605,8 @@ class el
 
 	/**
 	 * @param string $message
-	 * @param array $data
-	 * @param array $placeholders
+	 * @param array  $data
+	 * @param array  $placeholders
 	 *
 	 * @return array|string
 	 */
@@ -605,15 +615,16 @@ class el
 		$response = array(
 			'success' => false,
 			'message' => $this->lexicon($message, $placeholders),
-			'data' => $data,
+			'data'    => $data,
 		);
+
 		return $this->config['jsonResponse'] ? $this->modx->toJSON($response) : $response;
 	}
 
 	/**
 	 * @param string $message
-	 * @param array $data
-	 * @param array $placeholders
+	 * @param array  $data
+	 * @param array  $placeholders
 	 *
 	 * @return array|string
 	 */
@@ -622,8 +633,9 @@ class el
 		$response = array(
 			'success' => true,
 			'message' => $this->lexicon($message, $placeholders),
-			'data' => $data,
+			'data'    => $data,
 		);
+
 		return $this->config['jsonResponse'] ? $this->modx->toJSON($response) : $response;
 	}
 

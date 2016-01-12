@@ -56,9 +56,9 @@ class elLogin extends eccBaseController
 
 		$config = $this->modx->toJSON(array(
 			'connectorUrl' => $this->config['actionUrl'],
-			'namespace' => $this->config['namespace'],
-			'controller' => $this->config['controller'],
-			'path' => $this->config['path'],
+			'namespace'    => $this->config['namespace'],
+			'controller'   => $this->config['controller'],
+			'path'         => $this->config['path'],
 		));
 		$this->regTopScript("eccConfig.{$this->config['namespace']}={$config};");
 
@@ -93,8 +93,8 @@ class elLogin extends eccBaseController
 
 		$pls = array(
 			'authenticated' => $authenticated,
-			'send' => $send,
-			'propkey' => $this->el->getPropertiesKey($this->config),
+			'send'          => $send,
+			'propkey'       => $this->el->getPropertiesKey($this->config),
 		);
 
 		switch (true) {
@@ -104,6 +104,7 @@ class elLogin extends eccBaseController
 					$this->el->processObject($this->modx->user->Profile, true, true),
 					$this->el->processObject($this->modx->user, true, true)
 				);
+
 				return $this->modx->getChunk($this->config['tplLogout'], $pls);
 			default:
 			case !$authenticated:

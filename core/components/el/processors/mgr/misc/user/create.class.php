@@ -18,6 +18,7 @@ class modelUserCreateProcessor extends modUserCreateProcessor
 
 	/**
 	 * Override in your derivative class to do functionality before the fields are set on the object
+	 *
 	 * @return boolean
 	 */
 	public function beforeSet()
@@ -28,6 +29,7 @@ class modelUserCreateProcessor extends modUserCreateProcessor
 		}
 
 		$this->setProperty('passwordnotifymethod', $this->getProperty('passwordnotifymethod', 's'));
+
 		return parent::beforeSet();
 	}
 
@@ -47,6 +49,7 @@ class modelUserCreateProcessor extends modUserCreateProcessor
 
 	/**
 	 * Add User Group memberships to the User
+	 *
 	 * @return array
 	 */
 	public function setUserGroups()
@@ -80,6 +83,7 @@ class modelUserCreateProcessor extends modUserCreateProcessor
 				}
 			}
 		}
+
 		return $memberships;
 	}
 
@@ -90,6 +94,7 @@ class modelUserCreateProcessor extends modUserCreateProcessor
 	public function afterSave()
 	{
 		$this->setUserGroups();
+
 		return true;
 	}
 

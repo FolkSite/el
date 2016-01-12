@@ -11,7 +11,8 @@ class modelUserLogoutProcessor extends modSecurityLogoutProcessor
 	 * {@inheritDoc}
 	 * @return boolean
 	 */
-	public function initialize() {
+	public function initialize()
+	{
 
 		$this->setProperty('login_context', $this->getProperty('loginContext'));
 		$this->setProperty('add_contexts', $this->getProperty('addContexts'));
@@ -19,7 +20,8 @@ class modelUserLogoutProcessor extends modSecurityLogoutProcessor
 		return parent::initialize();
 	}
 
-	public function process() {
+	public function process()
+	{
 		if (!$this->modx->user->isAuthenticated($this->loginContext)) {
 			return $this->failure($this->modx->lexicon('not_logged_in'));
 		}

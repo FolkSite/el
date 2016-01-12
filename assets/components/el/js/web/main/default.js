@@ -9,10 +9,15 @@ el = {
         if (!jQuery().ajaxForm) {
             document.write('<script src="' + eccConfig.assetsUrl + 'vendor/ajaxform/jquery.form.min.js"><\/script>');
         }
-        if (!jQuery().pnotify) {
-            document.write('<script src="' + eccConfig.assetsUrl + 'vendor/pnotify/custom/pnotify.custom.min.js"><\/script>');
-        }
 
+        if (!jQuery().pnotify) {
+            $('<link/>', {
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: elConfig.assetsBaseUrl + 'components/modpnotify/build/pnotify.custom.css'
+            }).appendTo('head');
+            document.write('<script src="' + elConfig.assetsBaseUrl + 'components/modpnotify/build/pnotify.custom.js"><\/script>');
+        }
         $(document).ready(function() {
             PNotify.prototype.options.styling = "bootstrap3";
 

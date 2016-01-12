@@ -31,9 +31,9 @@ class elEventOnHandleRequest extends elEventPlugin
 
 				if (!$this->modx->user->isAuthenticated($properties['loginContext'])) {
 					if (!$this->el->loginUser(array(
-						'id' => $user,
+						'id'           => $user,
 						'loginContext' => $properties['loginContext'],
-						'addContexts' => $properties['addContexts']
+						'addContexts'  => $properties['addContexts']
 					))
 					) {
 						$this->modx->log(modX::LOG_LEVEL_ERROR, "[el] Could not login for user: {$user}");
